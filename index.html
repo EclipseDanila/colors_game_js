@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/style.css">
+    <title>color</title>
+</head>
+<body>
+    <section class="settings">
+        <div class="container settings__container">
+            <div class="colors__box">
+                <input type="color" value="#fac4c8" name="" class="input__color" id="">
+                <input type="color" value="#90af8b" name="" class="input__color" id="">
+                <input type="color" value="#ef74ad" name="" class="input__color" id="">
+                <input type="color" value="#b0c7da" name="" class="input__color" id="">
+
+                <!-- <input type="color" value="#000000" name="" class="input__color" id="">
+                <input type="color" value="#ffffff" name="" class="input__color" id="">
+                <input type="color" value="#ffcc00" name="" class="input__color" id="">
+                <input type="color" value="#0000ff" name="" class="input__color" id=""> -->
+            </div>
+            <div class="size__box">
+                <h5>Ряды</h5>
+                <input type="number" min="3" max="20" value="5" class="input__amount" name="" id="">
+                <h5>Колонки</h5>
+                <input type="number" min="3" max="20" value="5" class="input__amount" name="" id="">
+            </div>
+            <div class="modes__box">
+                <div class="mode__box-item">
+                    <input type="checkbox" name="" id="guide__mode">
+                    Режим новичка
+                </div>
+                <div class="mode__box-item">
+                    <input type="checkbox" name="" id="dev__mode">
+                    Режим разработчика
+                </div>
+            </div>
+        </div>
+        <div class="settings__btns container">
+            <button id="btn__start">Начать игру</button>
+            <button id="btn__quit">Закончить игру</button>
+        </div>
+    </section>
+
+    <section class="section field">
+    </section>
+    
+    <script src="./assets/script.js"></script>
+</body>
+</html>
