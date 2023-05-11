@@ -5,46 +5,47 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/style.css">
+    <link rel="stylesheet" href="./assets/adaptive.css">
     <title>color</title>
 </head>
 <body>
-    <section class="settings">
+    <section class="settings section active">
         <div class="container settings__container">
+            <h2>Выбирите цвета</h2>
             <div class="colors__box">
                 <input type="color" value="#fac4c8" name="" class="input__color" id="">
                 <input type="color" value="#90af8b" name="" class="input__color" id="">
                 <input type="color" value="#ef74ad" name="" class="input__color" id="">
                 <input type="color" value="#b0c7da" name="" class="input__color" id="">
-
-                <!-- <input type="color" value="#000000" name="" class="input__color" id="">
-                <input type="color" value="#ffffff" name="" class="input__color" id="">
-                <input type="color" value="#ffcc00" name="" class="input__color" id="">
-                <input type="color" value="#0000ff" name="" class="input__color" id=""> -->
             </div>
+            <h2>Выбирите размеры поля</h2>
             <div class="size__box">
-                <h5>Ряды</h5>
-                <input type="number" min="3" max="20" value="5" class="input__amount" name="" id="">
-                <h5>Колонки</h5>
-                <input type="number" min="3" max="20" value="5" class="input__amount" name="" id="">
+                <input type="number" min="3" max="20" value="5" class="input__amount" placeholder="Ряды">
+                <input type="number" min="3" max="20" value="5" class="input__amount" placeholder="Колонки">
             </div>
-            <div class="modes__box">
-                <div class="mode__box-item">
-                    <input type="checkbox" name="" id="guide__mode">
-                    Режим новичка
-                </div>
-                <div class="mode__box-item">
-                    <input type="checkbox" name="" id="dev__mode">
-                    Режим разработчика
+            <h2>Выбирите режим игры</h2>
+            
+            <div class="mode__box">
+                <!-- <input type="checkbox" id="guide__mode"> -->
+                <span>Режим обучения</span>
+                <div id="mode_input" class="mode">
+                    <div class="circle"></div>
                 </div>
             </div>
-        </div>
-        <div class="settings__btns container">
             <button id="btn__start">Начать игру</button>
-            <button id="btn__quit">Закончить игру</button>
         </div>
     </section>
-
+    
+    <div class="helper section">
+        <button id="btn__quit">Закончить игру</button>
+        <span>Количество ходов: <b id="steps_output">0</b></span>
+    </div>
     <section class="section field">
+    </section>
+    <section class="win section">
+        <div class="wrapper active">
+            <h2>Поздравляю вы победили!</h2>
+        </div>
     </section>
     
     <script src="./assets/script.js"></script>

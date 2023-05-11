@@ -1,65 +1,195 @@
-* {
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&display=swap');* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+:root {
+    --color-dark-1: #333;
+    --color-dark-2: #444;
+    --color-dark-3: #555;
+
+    --color-blue: #2F80ED;
+    --color-red: #EB5757;
+    --color-green: #27AE60;
+}
 body {
-    background-color: #272727;
-    font-family: sans-serif;
+    background-color: var(--color-dark-1);
+    font-family: 'Montserrat', sans-serif;
     color: #fff;
+    font-weight: 500;
+    font-size: 32px;
+}
+.section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 0 30px;
 }
 .container {
-    margin: 0 auto;
     max-width: 1920px;
-    max-width: 100vh;
     width: 95%;
 }
+button,
+input {
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
+    font-weight: 500;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+}
+button {
+    border-radius: 10px;
+    padding: 20px 50px;
+    font-size: 32px;
+    background-color: var(--color-blue);
+}
 
-/* SETTINGS START */
-.settings__container {
-    display: flex;
-    flex-direction: row;
+/* ----- Настройки ----- */
+.settings {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     align-items: center;
-    justify-content: space-between;
+    opacity: 0;
+    transition: opacity .3s;
+    z-index: 99;
 }
+.settings.active {
+    opacity: 1;
+}
+.settings__container {
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    background-color: var(--color-dark-2);
+    padding: 60px;
+    border-radius: 50px;
+}
+.settings h2 {
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+/* Выбор цвета */
 .colors__box {
-    display: grid;
-    height: 100%;
-    grid-template-columns: auto auto;
-    grid-template-rows: auto auto;
-    margin-right: 20px;
-}
-.colors__box input {
-    height: 50px;
-    width: 50px;
-}
-
-
-.settings__btns {
-    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
     margin-bottom: 40px;
 }
-/* SETTINGS END */
+.colors__box input {
+    height: 82px;
+    width: 80px;
+    background-color: transparent;
+    border: transparent;
+    outline: transparent;
+}
+/* Выбор размера */
+.size__box {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+.size__box input {
+    display: flex;
+    align-items: center;
+    background-color: var(--color-dark-1);
+    width: 250px;
+    height: 70px;
+    font-size: 36px;
+    padding: 0 20px;
+}
+/* Выбор режима */
+.mode__box {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 60px;
+    flex-wrap: wrap;
+}
+.mode__box .mode {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-red);
+    width: 80px;
+    min-width: 80px;
+    height: 40px;
+    border-radius: 20px;
+    transition: background-color .3s;
+}
+.mode__box .mode .circle {
+    background-color: var(--color-dark-2);
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    transform: translateX(-20px);
+    transition: transform .3s;
+}
+.mode__box .mode.active {
+    background-color: var(--color-green);
+}
+.mode__box .mode.active .circle {
+    transform: translateX(20px);
+}
 
-/* COLOR FIELD */
+/* ----- Сообщение о победе ----- */
+.win {
+    position: fixed;
+    z-index: 999;
+    bottom: 0;
+    transform: translateY(100%);
+    transition: transform .3s;
+}
+.win.active {
+    transform: translateY(-50px);
+}
+.win .wrapper {
+    padding: 20px;
+    border-radius: 20px;
+    background-color: var(--color-dark-2);
+}
+
+
+/* ----- Вспомогательное меню ----- */
+.helper {
+    opacity: 0;
+    transition: opacity .3s;
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    flex-wrap: wrap;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    align-items: center;
+}
+#btn__quit {
+    transition: opacity .3s;
+}
+
+
+/* ----- Игровое поле ----- */
+.field {
+    padding-bottom: 20px;
+}
 .field__container {
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
-    opacity: 1;
-    transition: .5s;
-}
-.card__guide{
-    transform: scale(.95);
+    opacity: 0;
+    transition: opacity .5s;
 }
 .color {
-    opacity: 0;
-    transition: .5s;
+    opacity: 1;
+    transition: opacity .5s;
     font-size: 10px;
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition-property: opacity;
     transform-origin: center center;
     color: #000;
 }
@@ -81,21 +211,22 @@ body {
         transform: scale(1);
     }
 }
-
+.card__guide::after,
 .blocked::after {
     position: absolute;
     content: '';
     width: 20%;
     height: 20%;
-    background-color: rgba(0, 0, 0);
     opacity: 0.5;
     border-radius: 50%;
 }
-
-
-.btn__disabled {
-    background-color: #4c4c4c;
+.card__guide::after{
+    background-color: #fff;
 }
+.blocked::after {
+    background-color: #000;
+}
+
 
 .field__col-3 .color{
     width: calc(100% / 3);
@@ -154,3 +285,8 @@ body {
 
 
 
+@media (max-width: 500px) {
+    .settings__container {
+        padding: 40px;
+    }
+}
