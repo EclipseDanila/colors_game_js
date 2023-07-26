@@ -1,8 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&display=swap');* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&display=swap');
 :root {
     --color-dark-1: #333;
     --color-dark-2: #444;
@@ -11,6 +7,11 @@
     --color-blue: #2F80ED;
     --color-red: #EB5757;
     --color-green: #27AE60;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 body {
     background-color: var(--color-dark-1);
@@ -160,10 +161,10 @@ button {
     transition: opacity .3s;
     display: flex;
     justify-content: center;
-    gap: 50px;
+    gap: 30px;
     flex-wrap: wrap;
-    padding-top: 100px;
-    padding-bottom: 100px;
+    padding-top: 20px;
+    padding-bottom: 50px;
     align-items: center;
 }
 #btn__quit {
@@ -281,12 +282,4 @@ button {
 }
 .field__col-20 .color{
     width: calc(100% / 20);
-}
-
-
-
-@media (max-width: 500px) {
-    .settings__container {
-        padding: 40px;
-    }
 }

@@ -34,7 +34,6 @@ var field = []
 var correctCards = 4
 // Количество шагов которые сделал пользователь
 var steps = 0
-
 // Режим обучения
 var guideMode = false
 
@@ -66,14 +65,16 @@ function rgbParse(rgb) {
     ]
 }
 
-// Функция конвертирует порядковый номер элемента в массив с координатами [x, y] 
+// Функция конвертирует порядковый номер элемента 
+// в массив с координатами [x, y]
 function order2place(order) {
     let x = Math.floor(order / cols)
     let y = order % cols
     return [x, y]
 }
 
-// Функция определяет является ли текущий элемент угловым
+// Функция определяет 
+// является ли текущий элемент угловым
 function cornerRule(i) {
     switch (i) {
         case 0:
@@ -120,7 +121,8 @@ modeInput.addEventListener('click', () => {
         guideMode = !guideMode
     }
 })
-// Слушатель события изменения значения инпутов выбора количества рядов и колонок
+// Слушатель события изменения значения
+// инпутов выбора количества рядов и колонок
 inputsAmount.forEach(el => {
     el.addEventListener('change', ()=>{
         if (el.value<3) {
@@ -153,11 +155,10 @@ function restart() {
 
 // Функция начала игрового процесса
 function start() {
-    // Игра запустится только если состояние игры "NULL"
+    // Игра запустится только если состояние игры рввно "NULL"
     if (gameState) {
         return
     }
-    
     /* Проверка на одинаковые цвета введенные пользователем */
     for (let i = 0; i < 4; i++) {
         for (let t = 0; t < 4; t++) {
@@ -179,11 +180,11 @@ function start() {
     setTimeout(() => {
         settingsSection.style.display = 'none'
     }, 400);
+    
+    /* Создание игрового поля */
     // Определение количества рядов и колонок
     rows = inputsAmount[0].value
     cols = inputsAmount[1].value
-
-    /* Создание игрового поля */
     // Создание контейнера для вывода карточек с цветом
     let container = document.createElement('div')
     container.className = 'field__container container'
@@ -195,7 +196,7 @@ function start() {
             field[i][t] = [NaN, NaN, NaN]
         }
     }
-
+    
     // Расчет размеров игрового поля
     // Высота окна пользователя
     let winHeight = window.innerHeight - 40
@@ -210,6 +211,7 @@ function start() {
     container.style.height = containerWidth*(rows/cols) + 'px'   
     container.classList.add('field__col-'+cols)
 
+    /* Заполнение матрицы */
     // Заполнение угловых элементов 
     let corners = []
     let i = 0
@@ -224,7 +226,8 @@ function start() {
     for (let i = 0; i < cols; i++) {    
         fillCol(field[0][i], field[rows-1][i], i)
     }
-    // Преобразование каждого элемента (цвета) матрицы в шестнадцатиричный формат 
+    // Преобразование каждого элемента (цвета) 
+    // матрицы в шестнадцатиричный формат 
     for (let r = 0; r < rows; r++) {
         for (let c = 0; c < cols; c++) {
             let el = field[r][c]
@@ -277,12 +280,10 @@ function start() {
             randArr.splice(randInt, 0, i)
         }
     }
-
     // Отрезок времени необходимый для отрисовки всех карточек
     let timeout = (Number(cols) + Number(rows))*100
     // Отрезок времени с учётом промежутка между анимациями
     let colorTimeout = 2000
-
     setTimeout(() => {
         // Скрытие всех карточек для пользователя кроме угловых
         cards.forEach(el => {
@@ -291,15 +292,13 @@ function start() {
             }
         });
     }, colorTimeout);
-
     colorTimeout+=timeout+500
-
     setTimeout(() => {
         for (let i = 0; i < cards.length; i++) {
             if (cornerRule(i)) {
-                // Установка позиций для элементов из массива с рандомными позициями
+                // Установка позиций для элементов 
+                // из массива со случайными позициями
                 cards[i].style.order = randArr.pop()
-
                 // Проверка находится ли элемент на своём месте
                 let pl = order2place(cards[i].style.order);
                 let bg = rgbParse(cards[i].style.backgroundColor)
@@ -311,9 +310,7 @@ function start() {
             }
         }
     }, colorTimeout);
-    
     colorTimeout+=20
-
     setTimeout(() => {
         // Отображение игрового поля для пользователя
         cards.forEach(el => {
@@ -324,14 +321,13 @@ function start() {
             el.addEventListener('click', main)
         });
     }, colorTimeout);
-    
     colorTimeout+=timeout
-
     setTimeout(() => {
         gameState = 'play'
         cards.forEach(el => {
             el.style.transition = 'all .2s'
-            // Добавление слушателя события клика на кнопку завершения игры
+            // Добавление слушателя события клика 
+            // на кнопку завершения игры
             btnQuit.addEventListener('click', restart) 
         });
     }, colorTimeout);
@@ -400,7 +396,8 @@ function main(event) {
     // Увеличение количества шагов
     steps++
     stepsOutput.innerHTML = steps
-    // Игра заканчивается если количество карточек на своих местах будет равно общему количеству карточек
+    // Игра заканчивается если количество карточек на своих местах
+    // будет равно общему количеству карточек
     if (correctCards == cols*rows) {
         gameState = win
         win()

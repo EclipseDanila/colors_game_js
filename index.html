@@ -5,48 +5,61 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/style.css">
-    <link rel="stylesheet" href="./assets/adaptive.css">
-    <title>color</title>
+    <title>Игра цвета</title>
 </head>
 <body>
+    <!-- Модальное окно с настройками игры -->
     <section class="settings section active">
         <div class="container settings__container">
+            <!-- Выбор цвета -->
             <h2>Выбирите цвета</h2>
             <div class="colors__box">
-                <input type="color" value="#fac4c8" name="" class="input__color" id="">
-                <input type="color" value="#90af8b" name="" class="input__color" id="">
-                <input type="color" value="#ef74ad" name="" class="input__color" id="">
-                <input type="color" value="#b0c7da" name="" class="input__color" id="">
+                <input type="color" value="#fac4c8" class="input__color">
+                <input type="color" value="#90af8b" class="input__color">
+                <input type="color" value="#ef74ad" class="input__color">
+                <input type="color" value="#b0c7da" class="input__color">
             </div>
+            <!-- Выбор цвета конец -->
+            <!-- Выбор размера игрового поля -->
             <h2>Выбирите размеры поля</h2>
             <div class="size__box">
                 <input type="number" min="3" max="20" value="5" class="input__amount" placeholder="Ряды">
                 <input type="number" min="3" max="20" value="5" class="input__amount" placeholder="Колонки">
             </div>
+            <!-- Выбор размера игрового поля конец -->
+            <!-- Выбор режима игры -->
             <h2>Выбирите режим игры</h2>
-            
             <div class="mode__box">
-                <!-- <input type="checkbox" id="guide__mode"> -->
                 <span>Режим обучения</span>
                 <div id="mode_input" class="mode">
                     <div class="circle"></div>
                 </div>
             </div>
+            <!-- Выбор режима игры конец -->
             <button id="btn__start">Начать игру</button>
         </div>
     </section>
+    <!-- Модальное окно с настройками игры конец -->
     
+    <!-- Вспомогательное меню -->
     <div class="helper section">
         <button id="btn__quit">Закончить игру</button>
         <span>Количество ходов: <b id="steps_output">0</b></span>
     </div>
+    <!-- Вспомогательное меню конец -->
+
+    <!-- Игровое поле -->
     <section class="section field">
     </section>
+    <!-- Игровое поле конец -->
+
+    <!-- Сообщение "победа" -->
     <section class="win section">
         <div class="wrapper active">
             <h2>Поздравляю вы победили!</h2>
         </div>
     </section>
+    <!-- Сообщение "победа" конец -->
     
     <script src="./assets/script.js"></script>
 </body>
